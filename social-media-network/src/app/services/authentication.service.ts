@@ -26,10 +26,10 @@ export class AuthenticationService {
 		);
 	  }
 
-	  logout(): void {
+	logout(): void {
 		localStorage.clear();
 		this.router.navigate(['/auth/login']);
-	  }
+	}
 
 	isLoggedIn(): boolean {
 		if (!localStorage.getItem('user')) {
@@ -38,13 +38,8 @@ export class AuthenticationService {
 		return true;
 	}
 
-	getToken(): string | null {
-		const user = localStorage.getItem('user');
-		if (user) {
-			const userData = JSON.parse(user);
-			return userData.token;
-		}
-		return null;
+	getToken(): string | null{
+		return localStorage.getItem('user');
 	}
 
 	getAuthenticatedHeaders(): HttpHeaders {

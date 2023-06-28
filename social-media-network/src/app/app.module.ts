@@ -14,6 +14,12 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { AuthenticationService } from './services/authentication.service';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ProfileComponent } from './pages/profile/profile.component';
+import { canActivateAuthGuard } from './services/can-activate-auth.guard';
+import { PostItemComponent } from './components/post/post-item/post-item.component';
+import { PostItemListComponent } from './components/post/post-item-list/post-item-list.component';
+import { PostComponent } from './pages/post/post.component';
+import { JwtUtilsServiceService } from './services/jwt-utils-service.service';
 
 @NgModule({
   declarations: [
@@ -22,7 +28,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     HomeComponent,
     RegisterComponent,
     LoginComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    ProfileComponent,
+    PostItemComponent,
+    PostItemListComponent,
+    PostComponent
   ],
   imports: [
     BrowserModule,
@@ -35,7 +45,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
   ],
   providers: [
     AuthenticationService,
-    UserService
+    UserService,
+    canActivateAuthGuard,
+    JwtUtilsServiceService
   ],
   bootstrap: [AppComponent]
 })

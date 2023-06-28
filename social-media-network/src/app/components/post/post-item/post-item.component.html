@@ -1,0 +1,23 @@
+<div class="card mb-2">
+  <div class="card-header d-flex bd-highlight">
+    <div class="p-2 w-100 bd-highlight">
+      <small>
+        <span class="text-muted me-2" *ngIf="post?.user">
+        by <i class="bi bi-person-fill"></i>&nbsp;
+          <a routerLink="/users/{{post.user.username}}"><span
+            *ngIf="!post?.user?.displayName;else displayName">{{post.user.username}}</span>
+            <ng-template #displayName>{{post.user.displayName}}</ng-template>
+          </a> at {{post.creationDate | date:'short'}}
+    <div class="p-2 bd-highlight">
+      
+    </div>
+  <div class="card-body">
+    <div class="d-flex align-items-center">
+      <div class="flex-grow-1 ms-3">
+        <h5 class="mt-1"><a class="text-decoration-none link-dark" routerLink="/posts/{{post.id}}">{{post.user.username}}</a>
+        </h5>
+        <hr/>
+        <p>{{post.content}}</p>
+      </div>
+    </div>
+  </div>

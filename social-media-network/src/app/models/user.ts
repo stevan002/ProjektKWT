@@ -1,3 +1,4 @@
+import { Post } from "./post";
 
 export class User {
     public id: number = 0;
@@ -8,4 +9,8 @@ export class User {
     public lastName: string = "";
     public image: string = "";
     public friends: User[] = [];
+    public displayName: string = "";
+    public description: string = "";
+    public registrationDate: Date = new Date();
+    public posts: Post[] = [];
 }
