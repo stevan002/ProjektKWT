@@ -1,0 +1,20 @@
+<div class="card">
+    <div class="card-body">
+      <form class="p-5" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+        <label for="emailField">Email</label>
+        <input id="emailField" class="form-control" style="max-width:200px" type="email" formControlName="email"
+               required/>
+        <label for="usernameField">Username</label>
+        <input id="usernameField" class="form-control" style="max-width:200px" type="text" formControlName="username"
+               required/>
+         <label for="passwordField">Password</label>
+        <input id="passwordField" class="form-control" style="max-width:200px" type="password" autocomplete="password"
+               formControlName="password" required/>
+        <label for="firstNameField">FirstName</label>
+        <input id="firstNameField" class="form-control" style="max-width:200px" type="text" formControlName="firstName" required/>       
+        <label for="lastNameField">LastName</label>
+        <input id="lastNameField" class="form-control" style="max-width:200px" type="text" formControlName="lastName" required/>
+        <input class="btn btn-primary mt-2" type="submit" value="Submit"/>
+      </form>
+    </div>
+  </div>
