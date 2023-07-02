@@ -1,0 +1,87 @@
+.post-card {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.post-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.post-header h2 {
+  font-size: 18px;
+  margin-right: 10px;
+}
+
+.post-header p {
+  font-size: 14px;
+  color: #666;
+  margin-right: 10px;
+}
+
+.post-actions {
+  margin-bottom: 10px;
+}
+
+.post-actions button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+.post {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.post-content {
+  margin-bottom: 10px;
+}
+
+.post-content p {
+  font-size: 16px;
+}
+
+.post-content textarea {
+  width: 100%;
+  min-height: 80px;
+  font-size: 16px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  resize: vertical;
+}
+
+#btnObrisi {
+  background-color: #dc3545;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+#content {
+  font-size: 16px;
+  margin-bottom: 0;
+}
+
+#editText {
+  width: 100%;
+  min-height: 80px;
+  font-size: 16px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  resize: vertical;
+}

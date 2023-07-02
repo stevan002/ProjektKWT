@@ -16,10 +16,9 @@ import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { canActivateAuthGuard } from './services/can-activate-auth.guard';
-import { PostItemComponent } from './components/post/post-item/post-item.component';
-import { PostItemListComponent } from './components/post/post-item-list/post-item-list.component';
 import { PostComponent } from './pages/post/post.component';
 import { JwtUtilsServiceService } from './services/jwt-utils-service.service';
+import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
 
 @NgModule({
   declarations: [
@@ -30,9 +29,8 @@ import { JwtUtilsServiceService } from './services/jwt-utils-service.service';
     LoginComponent,
     NotFoundComponent,
     ProfileComponent,
-    PostItemComponent,
-    PostItemListComponent,
-    PostComponent
+    PostComponent,
+    EditProfileComponent
   ],
   imports: [
     BrowserModule,

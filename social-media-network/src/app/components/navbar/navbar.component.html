@@ -14,10 +14,13 @@
               <a class="nav-link" routerLink="/home" routerLinkActive="active">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" routerLink="/users/{{username}}" routerLinkActive="active">Profile</a>
+              <a class="nav-link" routerLink="/users/{{username}}" routerLinkActive="active">{{ authService.getCurrentUsername()}}</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" routerLink="/communities" routerLinkActive="active">Communities</a>
+              <a class="nav-link" routerLink="/groups" routerLinkActive="active">Groups</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/post" routerLinkActive="active">Create post</a>
             </li>
           </ul>
           <form class="d-flex">

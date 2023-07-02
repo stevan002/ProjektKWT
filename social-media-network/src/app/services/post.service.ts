@@ -2,22 +2,26 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs';
-import { Post } from '../models/post';
+import { Post } from '../models/post.model';
 import { environment } from 'src/environments/environment.development';
+import { User } from '../models/user.model';
+import { AuthenticationService } from './authentication.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PostService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private authenticationService: AuthenticationService) { }
 
-  public save(postForm: FormGroup): Observable<Post> {
-    return this.http.post<Post>(`${environment.api}/post`, postForm.value);
+  public save(post: Post): Observable<Post> {
+    const headers = this.authenticationService.getAuthenticatedHeaders();
+    return this.http.post<Post>(`${environment.api}/post`, post, { headers });
   }
 
-  public delete(id: number): Observable<boolean> {
-    return this.http.delete<boolean>(`${environment.api}/post/${id}`);
+  public delete(id: number): Observable<void> {
+    const headers = this.authenticationService.getAuthenticatedHeaders();
+    return this.http.delete<void>(`${environment.api}/post/${id}`, { headers });
   }
 
   public getAll(): Observable<Post[]>{

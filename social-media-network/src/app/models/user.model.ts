@@ -1,7 +1,7 @@
-import { Post } from "./post";
+import { Post } from "./post.model";
 
 export class User {
-    public id: number = 0;
+    public id?: number;
     public username: string = "";
     public password: string = "";
     public email: string = "";

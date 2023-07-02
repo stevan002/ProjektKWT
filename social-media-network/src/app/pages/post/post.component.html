@@ -1,1 +1,27 @@
-<app-post-item [post]="post"></app-post-item>
+<div class="post-card" *ngIf="loggedIn">
+    <div class="post-header">
+      <h2>Novi post</h2>
+    </div>
+    <div class="post-content">
+      <textarea [(ngModel)]="newPostContent" placeholder="Create post"></textarea>
+    </div>
+    <div class="post-actions">
+      <button (click)="createPost()">Objavi</button>
+    </div>
+</div>
+<div *ngIf="!loggedIn">
+  <h4>Welcome to social media app</h4>
+</div>
+<div *ngFor="let post of posts" class="post">
+    <div class="post-header">
+      <h2>{{ post.createdBy?.username }}</h2>
+      <p>{{ post.createdAt }}</p>
+      <ng-container>
+        <button id="btnObrisi" (click)="deletePost(post.id)">Obriši</button>
+      </ng-container>
+    </div>
+    <div class="post-content">
+      <p id="content" *ngIf="!post.isEditing">{{ post.content }}</p>
+      <textarea id="editText" *ngIf="post.isEditing" [(ngModel)]="post.updatedContent"></textarea>
+    </div>
+</div>

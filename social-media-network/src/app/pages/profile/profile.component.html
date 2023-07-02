@@ -17,13 +17,8 @@
           </li>
         </ul>
       </div>
-      <div class="col-lg-5 col-md-12">
-        <ul class="list-group">
-          <li class="list-group-item">Email: {{user.email}}</li>
-          <li class="list-group-item">Joined: {{user.registrationDate | date: 'medium'}}</li>
-        </ul>
-      </div>
     </div>
 
   </div>
 </div>
+<app-edit-profile *ngIf="editProfileEnabled" (updateUserEvent)="onUpdateProfile($event)"></app-edit-profile>

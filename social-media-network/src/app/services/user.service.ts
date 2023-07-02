@@ -1,22 +1,22 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { User } from '../models/user';
+import { User } from '../models/user.model';
 import { environment } from 'src/environments/environment.development';
-import { JwtUtilsServiceService } from './jwt-utils-service.service';
 import { AuthenticationService } from './authentication.service';
 
 @Injectable()
 export class UserService {
 
+  private currentUser!: User;
+
   constructor(
     private http: HttpClient,
-    private jwtUtilsService: JwtUtilsServiceService,
     private authService: AuthenticationService
   ) { }
 
-  public register(user: User): Observable<boolean> {
-    return this.http.post<boolean>(`${environment.api}/auth/register`, user);
+  public register(user: any) {
+    return this.http.post(`${environment.api}/auth/register`, user);
   }
 
   public getUser(username: string): Observable<User> {
@@ -24,7 +24,11 @@ export class UserService {
   }
 
   public getUsername(): string{
-    return this.jwtUtilsService.getUsernameFromToken();
+    return this.authService.getCurrentUsername();
+  }
+
+  public update(user: User): Observable<User>{
+    return this.http.put<User>(`${environment.api}/users`, user);
   }
 
 }

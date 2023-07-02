@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from './models/user';
+import { User } from './models/user.model';
 import { UserService } from './services/user.service';
 import { AuthenticationService } from './services/authentication.service';
 import { Router } from '@angular/router';
@@ -15,6 +15,7 @@ export class AppComponent implements OnInit {
 
   constructor(private router: Router, public authService: AuthenticationService){}
   ngOnInit(): void {
+    this.authService.getCurrentUser();
   }
 
   logout(): void{

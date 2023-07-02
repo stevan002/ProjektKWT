@@ -10,10 +10,9 @@ import { PostComponent } from './pages/post/post.component';
 
 const routes: Routes = [
   {path: 'home', component: HomeComponent},
-  {path: 'auth/register', component: RegisterComponent},
-  {path: 'auth/login', component: LoginComponent},
-  {path: 'users/:username', component: ProfileComponent, canActivate: [canActivateAuthGuard]},
-  {path: "posts/:id", component: PostComponent},
+  {path: 'auth/register', component: RegisterComponent, canActivate:[canActivateAuthGuard]},
+  {path: 'auth/login', component: LoginComponent, canActivate:[canActivateAuthGuard]},
+  {path: 'users/:username', component: ProfileComponent},
   {path: '', redirectTo: 'home', pathMatch: 'full'},
   {path: "**",  component: NotFoundComponent}
 ];

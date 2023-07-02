@@ -1,20 +1,30 @@
-<div class="card">
-    <div class="card-body">
-      <form class="p-5" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-        <label for="emailField">Email</label>
-        <input id="emailField" class="form-control" style="max-width:200px" type="email" formControlName="email"
-               required/>
-        <label for="usernameField">Username</label>
-        <input id="usernameField" class="form-control" style="max-width:200px" type="text" formControlName="username"
-               required/>
-         <label for="passwordField">Password</label>
-        <input id="passwordField" class="form-control" style="max-width:200px" type="password" autocomplete="password"
-               formControlName="password" required/>
-        <label for="firstNameField">FirstName</label>
-        <input id="firstNameField" class="form-control" style="max-width:200px" type="text" formControlName="firstName" required/>       
-        <label for="lastNameField">LastName</label>
-        <input id="lastNameField" class="form-control" style="max-width:200px" type="text" formControlName="lastName" required/>
-        <input class="btn btn-primary mt-2" type="submit" value="Submit"/>
-      </form>
-    </div>
+<h1>Registracija korisnika</h1>
+<div class="registration-form">
+  <div class="form-group">
+    <label for="firstname">Ime:</label>
+    <input type="text" id="firstname" name="firstname" [(ngModel)]="firstName" />
   </div>
+  <div class="form-group">
+    <label for="lastname">Prezime:</label>
+    <input type="text" id="lastname" name="lastname" [(ngModel)]="lastName" />
+  </div>
+  <div class="form-group">
+    <label for="username">Korisničko ime:</label>
+    <input type="text" id="username" name="username" [(ngModel)]="username" />
+  </div>
+  <div class="form-group">
+    <label for="email">Email adresa:</label>
+    <input type="text" id="email" name="email" [(ngModel)]="email" />
+  </div>
+  <div class="form-group">
+    <label for="password">Lozinka:</label>
+    <input type="password" id="password" name="password" [(ngModel)]="password" />
+  </div>
+  <div class="button-group">
+    <button class="register-button" (click)="register()">Registruj se</button>
+  </div>
+  <div class="toLogin">
+    <p>Već imaš nalog?</p>
+    <button routerLink="/auth/login">Prijavi se</button>
+  </div>
+</div>

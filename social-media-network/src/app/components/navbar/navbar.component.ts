@@ -14,8 +14,7 @@ export class NavbarComponent implements OnInit{
   username: string = "";
 
   constructor(
-    private authService: AuthenticationService,
-    private router: Router,
+    public authService: AuthenticationService,
     private userService: UserService
   ){}
 
