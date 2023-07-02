@@ -12,6 +12,7 @@ export class NavbarComponent implements OnInit{
 
   loggedIn: boolean = false;
   username: string = "";
+  displayName: string = "";
 
   constructor(
     public authService: AuthenticationService,

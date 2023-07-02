@@ -34,19 +34,12 @@ export class RegisterComponent implements OnInit{
 
     this.userService.register(user).subscribe(
       () => {
-        this.successMessage();
+        this.router.navigateByUrl("/auth/login");
       },
       (error) => {
         console.log(error);
       }
     );
-  }
-
-  successMessage() {
-    this.showSuccess = true;
-    setTimeout(() => {
-      this.router.navigateByUrl("/auth/login");
-    }, 5000);
   }
 
 

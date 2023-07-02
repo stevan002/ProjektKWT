@@ -1,9 +1,6 @@
 <div class="card">
     <div class="card-body">
       <form class="p-5" [formGroup]="editProfileForm" (ngSubmit)="onSubmit()">
-        <label for="emailField">Email</label>
-        <input id="emailField" class="form-control" style="max-width:200px" type="email" formControlName="email"
-               required/>
         <label for="displayNameField">Display name</label>
         <input id="displayNameField" class="form-control" style="max-width:200px" type="text"
                formControlName="displayName" required/>
@@ -11,20 +8,6 @@
         <input id="descriptionField" class="form-control" style="max-width:200px" type="text"
                formControlName="description" required/>
   
-        <label for="passwordField">Old password</label>
-        <input id="passwordField" class="form-control" autocomplete="oldPassword" style="max-width:200px" type="password" formControlName="password"
-               required/>
-  
-        <label for="newPasswordField">New password</label>
-        <input id="newPasswordField" class="form-control" style="max-width:200px" autocomplete="newPassword" type="password"
-               formControlName="newPassword" required/>
-  
-        <label for="repeatPasswordField">Repeat password</label>
-        <input id="repeatPasswordField" class="form-control" style="max-width:200px" autocomplete="newPasswordRepeat" type="password"
-               formControlName="repeatPassword" required/>
-  
-        <p class="text-danger fw-bold" *ngIf="newPassword != repeatPassword">*Passwords don't match</p>
-        
         <input class="btn btn-primary mt-2" type="submit" value="Submit"/>
       </form>
     </div>

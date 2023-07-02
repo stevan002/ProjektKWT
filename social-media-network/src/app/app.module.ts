@@ -19,6 +19,7 @@ import { canActivateAuthGuard } from './services/can-activate-auth.guard';
 import { PostComponent } from './pages/post/post.component';
 import { JwtUtilsServiceService } from './services/jwt-utils-service.service';
 import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
+import { ChangePasswordComponent } from './components/change-password/change-password.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { EditProfileComponent } from './components/edit-profile/edit-profile.com
     NotFoundComponent,
     ProfileComponent,
     PostComponent,
-    EditProfileComponent
+    EditProfileComponent,
+    ChangePasswordComponent
   ],
   imports: [
     BrowserModule,

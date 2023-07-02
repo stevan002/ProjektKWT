@@ -27,8 +27,9 @@ export class UserService {
     return this.authService.getCurrentUsername();
   }
 
-  public update(user: User): Observable<User>{
-    return this.http.put<User>(`${environment.api}/users`, user);
+  public update(user: User): Observable<void>{
+    const headers = this.authService.getAuthenticatedHeaders();
+    return this.http.put<void>(`${environment.api}/users`, user, { headers, responseType: 'json' });
   }
 
 }

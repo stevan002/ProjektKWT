@@ -1,5 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { User } from 'src/app/models/user.model';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { UserService } from 'src/app/services/user.service';
@@ -11,67 +12,36 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class EditProfileComponent implements OnInit{
 
-  @Output() updateUserEvent = new EventEmitter<User>()
-  editProfileForm = this.fb.group({
-    email: [''],
-    password: [''],
-    newPassword: [''],
-    repeatPassword: [''],
-    displayName: [''],
-    description: ['']
-  });
+  editProfileForm!: FormGroup;
 
-  constructor(
-    private userService: UserService,
-    private fb: FormBuilder,
-    private authService: AuthenticationService
-  ){}
+  constructor(private formBuilder: FormBuilder, private userService: UserService, private router: Router) { }
 
-
-  ngOnInit(): void {
-    const currentUser = this.authService.getCurrentUser();
-  if (currentUser) {
-    this.editProfileForm.patchValue({
-      email: currentUser.email,
-      displayName: currentUser.displayName,
-      description: currentUser.description,
-      newPassword: currentUser.password
+  ngOnInit() {
+    this.editProfileForm = this.formBuilder.group({
+      displayName: ['', Validators.required],
+      description: ['', Validators.required]
     });
   }
-  }
 
-  onSubmit(){
-    if(this.newPassword == this.repeatPassword){
-      this.userService.update(this.editProfileForm.value as User).subscribe((user: User) => {
-        this.updateUserEvent.emit(user);
-      });
-    } else {
-      alert('Password do not match');
+  onSubmit() {
+    if (this.editProfileForm.invalid) {
+      return;
     }
-  }
 
-  get description(){
-    return this.editProfileForm.get("description")?.value
-  }
+    const userDTO: any = {
+      displayName: this.editProfileForm.value.displayName,
+      description: this.editProfileForm.value.description
+    };
 
-  get displayName(){
-    return this.editProfileForm.get("displayName")?.value
+    this.userService.update(userDTO).subscribe(
+      response => {
+        // Uspješno ažuriranje
+        console.log(response);
+        this.router.navigateByUrl('/home')
+      },
+      error => {
+        console.log(error);
+      }
+    );
   }
-
-  get email(){
-    return this.editProfileForm.get("email")?.value
-  }
-
-  get repeatPassword(){
-    return this.editProfileForm.get("repeatPassword")?.value
-  }
-
-  get newPassword() {
-    return this.editProfileForm.get('newPassword')?.value;
-  }
-
-  get password() {
-    return this.editProfileForm.get('password')?.value;
-  }
-
 }
