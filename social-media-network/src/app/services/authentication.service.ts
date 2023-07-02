@@ -5,6 +5,7 @@ import { Observable, catchError, map, tap } from 'rxjs';
 import { environment } from 'src/environments/environment.development';
 import { JwtUtilsServiceService } from './jwt-utils-service.service';
 import { User } from '../models/user.model';
+import { LoginResponse } from '../models/login.response';
 
 @Injectable({
   providedIn: 'root'
@@ -18,12 +19,14 @@ export class AuthenticationService {
 		private http: HttpClient,
 		private router: Router,
 		private jwtUtilsService: JwtUtilsServiceService
-	) { }
+	) { 
+		this.currentUser = this.getCurrentUser();
+	}
 
 	login(auth: any): Observable<any> {
 		return this.http.post(environment.api + '/auth/login', {username: auth.username, password: auth.password}, {headers: this.headers}).pipe(
 			map((response: any) => {
-				const loginResponse = response;
+				const loginResponse = response as LoginResponse;
 				this.currentUser = loginResponse.user;
 				localStorage.setItem('user', JSON.stringify(loginResponse.user));
 				return response;
@@ -48,9 +51,9 @@ export class AuthenticationService {
 	}
 
 	getToken(): string | null{
-		const sessionStorageUser = localStorage.getItem("user")
-    	if (sessionStorageUser) {
-      		const currentUser = JSON.parse(sessionStorageUser);
+		const localStorageUser = localStorage.getItem("user")
+    	if (localStorageUser) {
+      		const currentUser = JSON.parse(localStorageUser);
 
 			return currentUser.accessToken;
     	}

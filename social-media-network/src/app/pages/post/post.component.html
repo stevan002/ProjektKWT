@@ -1,12 +1,12 @@
 <div class="post-card">
     <div class="post-header">
-      <h2>Novi post</h2>
+      <h2>New post</h2>
     </div>
     <div class="post-content">
       <textarea [(ngModel)]="newPostContent" placeholder="Create post"></textarea>
     </div>
     <div class="post-actions">
-      <button (click)="createPost()">Objavi</button>
+      <button (click)="createPost()">Create</button>
     </div>
 </div>
 <div *ngFor="let post of posts" class="post">
@@ -14,7 +14,12 @@
       <h2>{{ post.createdBy?.username }}</h2>
       <p>{{ post.createdAt }}</p>
       <ng-container *ngIf="!post.isEditing && !post.isUpdating && post.createdBy?.username === currentUser?.sub">
-        <button id="btnObrisi" (click)="deletePost(post.id)">Obriši</button>
+        <button id="btnEdit" (click)="startEditPost(post)">Edit</button>
+        <button id="btnDelete" (click)="deletePost(post.id)">Delete</button>
+      </ng-container>
+      <ng-container *ngIf="post.isEditing && !post.isUpdating">
+        <button id="btnCancel" (click)="cancelEditPost(post)">Cancel</button>
+        <button id="btnConfirm" (click)="updatePost(post.id, post)">Confirm</button>
       </ng-container>
     </div>
     <div class="post-content">

@@ -86,10 +86,46 @@ export class PostComponent implements OnInit{
         console.error("Niste kreirali post, ne mozete da ga obrisete.");
         return
     }
-
     this.postService.delete(postId).subscribe(() => {
       this.loadPosts();
     });
+
+    this.loadPosts();
   }
 
+  startEditPost(post: Post) {
+    post.isEditing = true;
+    post.updatedContent = post.content;
+  }
+
+  cancelEditPost(post: Post) {
+    post.isEditing = false;
+  }
+
+  updatePost(postId: number, post: Post){
+    this.currentUser = this.authService.getCurrentUser();
+
+    if(!this.currentUser || post.createdBy?.username !== this.currentUser.sub){
+      console.error("Niste kreirali objavu!");
+      return
+    }
+    if (!post.updatedContent.trim()) {
+      return;
+    }
+
+    post.content = post.updatedContent;
+    post.isEditing = false;
+    post.isUpdating = true;
+
+    this.postService.update(postId, post.content).subscribe(
+      updatePost =>{
+        post.isUpdating = false;
+      },
+      error => {
+        console.log("Greska: ", error);
+        post.isEditing = true;
+        post.isUpdating = false;
+      }
+    )
+  }
 }

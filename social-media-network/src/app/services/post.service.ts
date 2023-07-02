@@ -19,9 +19,14 @@ export class PostService {
     return this.http.post<Post>(`${environment.api}/post`, post, { headers });
   }
 
+  public update(postId: number, postContent: string): Observable<Post> {
+    const headers = this.authenticationService.getAuthenticatedHeaders();
+    return this.http.put<Post>(`${environment.api}/post/${postId}`, postContent, { headers });
+  }
+
   public delete(id: number): Observable<void> {
     const headers = this.authenticationService.getAuthenticatedHeaders();
-    return this.http.delete<void>(`${environment.api}/post/${id}`, { headers });
+    return this.http.delete<void>(`${environment.api}/post/${id}`, {headers});
   }
 
   public getAll(): Observable<Post[]>{
