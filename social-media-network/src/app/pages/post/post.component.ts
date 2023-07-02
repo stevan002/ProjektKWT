@@ -13,7 +13,6 @@ export class PostComponent implements OnInit{
   posts: Post[] = [];
   newPostContent: string = '';
   currentUser: any;
-  loggedIn: boolean | undefined;
 
   constructor(
     private postService: PostService,
@@ -21,7 +20,6 @@ export class PostComponent implements OnInit{
 
   ngOnInit(): void {
     this.currentUser = this.authService.getCurrentUser();
-    this.loggedIn = this.authService.isLoggedIn();
     this.loadPosts();
   }
 
@@ -31,7 +29,6 @@ export class PostComponent implements OnInit{
     }
 
     this.currentUser = this.authService.getCurrentUser();
-    console.log(this.currentUser, "ovo je ulogovani korisnik"); //obrisati
     if(!this.currentUser){
       console.log("nepoznat ulogovani korisnik");
       return
@@ -73,7 +70,7 @@ export class PostComponent implements OnInit{
           }
         });
         this.posts.reverse();
-        console.log(this.posts);
+//        console.log(this.posts);
       },
       error => {
         console.log(error);

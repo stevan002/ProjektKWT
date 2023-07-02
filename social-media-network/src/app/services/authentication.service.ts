@@ -51,10 +51,10 @@ export class AuthenticationService {
 		const sessionStorageUser = localStorage.getItem("user")
     	if (sessionStorageUser) {
       		const currentUser = JSON.parse(sessionStorageUser);
-      		const token = currentUser && currentUser.token;
-      		// return token ? token : "";
+
 			return currentUser.accessToken;
     	}
+		
     	return null;
 	}
 

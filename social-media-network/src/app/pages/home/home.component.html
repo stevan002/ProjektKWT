@@ -1,1 +1,4 @@
-<app-post></app-post>
+<div *ngIf="!loggedIn">
+    <h4>Welcome to social media app</h4>
+  </div>
+<app-post *ngIf="loggedIn"></app-post>

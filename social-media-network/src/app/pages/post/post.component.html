@@ -1,4 +1,4 @@
-<div class="post-card" *ngIf="loggedIn">
+<div class="post-card">
     <div class="post-header">
       <h2>Novi post</h2>
     </div>
@@ -9,14 +9,11 @@
       <button (click)="createPost()">Objavi</button>
     </div>
 </div>
-<div *ngIf="!loggedIn">
-  <h4>Welcome to social media app</h4>
-</div>
 <div *ngFor="let post of posts" class="post">
     <div class="post-header">
       <h2>{{ post.createdBy?.username }}</h2>
       <p>{{ post.createdAt }}</p>
-      <ng-container>
+      <ng-container *ngIf="!post.isEditing && !post.isUpdating && post.createdBy?.username === currentUser?.sub">
         <button id="btnObrisi" (click)="deletePost(post.id)">Obriši</button>
       </ng-container>
     </div>
