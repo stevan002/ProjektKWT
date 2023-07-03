@@ -1,17 +1,23 @@
 <div class="post-card">
-    <div class="post-header">
-      <h2>New post</h2>
-    </div>
-    <div class="post-content">
-      <textarea [(ngModel)]="newPostContent" placeholder="Create post"></textarea>
-    </div>
-    <div class="post-actions">
-      <button (click)="createPost()">Create</button>
-    </div>
+  <div class="post-header">
+    <h2>New post</h2>
+  </div>
+  <div class="post-content">
+    <textarea [(ngModel)]="newPostContent" placeholder="Create post"></textarea>
+  </div>
+  <div class="post-actions">
+    <select [(ngModel)]="selectedGroup">
+      <option value="">Public</option>
+      <option *ngFor="let group of groups" [value]="group.id">{{ group.name }}</option>
+    </select>
+    <button (click)="createPost()">Create</button>
+  </div>
 </div>
 <div *ngFor="let post of posts" class="post">
-    <div class="post-header">
+    <div class="post-header" *ngFor="let group of groups">
       <h2>{{ post.createdBy?.displayName ? post.createdBy?.displayName : post.createdBy?.username}}</h2>
+      <p *ngIf="post.containedBy">Private</p>
+      <p *ngIf="!post.containedBy">Public</p>
       <p>{{ post.createdAt }}</p>
       <ng-container *ngIf="!post.isEditing && !post.isUpdating && post.createdBy?.username === currentUser?.sub">
         <button id="btnEdit" (click)="startEditPost(post)">Edit</button>

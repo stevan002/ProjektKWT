@@ -31,6 +31,7 @@ export class GroupComponent implements OnInit{
     this.groupService.save(group).subscribe(
       () => {
         console.log("Group successfully created !")
+        this.loadGroups();
         this.newGroupName = '';
         this.newGroupDescription = '';
       },
@@ -45,8 +46,6 @@ export class GroupComponent implements OnInit{
       groups => {
         this.groups = groups;
         
-        //ocitavanje komentara
-
         this.groups.sort((a, b) => {
           if(a.createdAt && b.createdAt){
             return new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime();
@@ -55,7 +54,6 @@ export class GroupComponent implements OnInit{
           }
         });
         this.groups.reverse();
-//        console.log(this.posts);
       },
       error => {
         console.log(error);

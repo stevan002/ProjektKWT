@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Group } from 'src/app/models/group.model';
 import { Post } from 'src/app/models/post.model';
 import { AuthenticationService } from 'src/app/services/authentication.service';
+import { GroupService } from 'src/app/services/group.service';
 import { PostService } from 'src/app/services/post.service';
 
 @Component({
@@ -13,14 +15,27 @@ export class PostComponent implements OnInit{
   posts: Post[] = [];
   newPostContent: string = '';
   currentUser: any;
+  groups!: Group[];
+  selectedGroup!: number;
 
   constructor(
     private postService: PostService,
-    private authService: AuthenticationService){}
+    private authService: AuthenticationService,
+    private groupService: GroupService){}
 
   ngOnInit(): void {
     this.currentUser = this.authService.getCurrentUser();
     this.loadPosts();
+
+    this.groupService.getAll().subscribe(
+      (data: Group[]) => {
+        this.groups = data;
+      },
+      (error) => {
+        console.log("Error: ", error);
+      }
+    )
+
   }
 
   createPost(){
@@ -36,6 +51,7 @@ export class PostComponent implements OnInit{
 
     const newPost: Post = {
       content: this.newPostContent,
+      containedBy: this.selectedGroup,
       comments: [],
       isEditing: false,
       isUpdating: false,
@@ -130,4 +146,11 @@ export class PostComponent implements OnInit{
       }
     )
   }
+
+  getGroupName(groupId: number): string {
+    const group = this.groups.find(g => g.id === groupId);
+    return group ? group.name : '';
+  }
+  
+  
 }

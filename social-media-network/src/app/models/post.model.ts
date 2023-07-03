@@ -1,4 +1,5 @@
 import { Comment } from "./comment.model";
+import { Group } from "./group.model";
 import { User } from "./user.model";
 
 export interface Post {
@@ -6,6 +7,7 @@ export interface Post {
     content: string
     createdAt?: Date
     createdBy?: User;
+    containedBy?: number;
     isDeleted?: boolean;
     isEditing: boolean
     updatedContent: string
