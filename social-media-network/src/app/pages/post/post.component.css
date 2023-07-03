@@ -1,83 +1,144 @@
-/* Stil za post-card */
+/* Stil za glavni kontejner */
 .post-card {
-  max-width: 500px; /* Prilagodite širinu prema potrebama */
-  margin: 0 auto; /* Centriranje forme */
-  padding: 10px;
-  background-color: #ffffff;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+  background-color: #f9f9f9;
+  padding: 20px;
+  margin-bottom: 20px;
+  border: solid 1px lightblue;
 }
 
+/* Stil za zaglavlje posta */
 .post-header {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
   margin-bottom: 10px;
 }
 
+.post{
+  border: solid 1px blue;
+  padding: 20px;
+  margin: 10px;
+}
+
+/* Stil za naslov posta */
 .post-header h2 {
+  font-size: 24px;
+  margin: 0;
+}
+
+/* Stil za naslov autora posta */
+.post-header h4 {
   font-size: 18px;
   margin: 0;
 }
 
+/* Stil za datum posta */
+.post-header p {
+  font-size: 14px;
+  color: #888;
+  margin: 0;
+}
+
+/* Stil za dugmad akcija posta */
 .post-actions {
-  display: flex;
-  justify-content: flex-end;
   margin-top: 10px;
 }
 
+/* Stil za dugmad akcija posta */
 .post-actions button {
-  background-color: #4267B2;
-  color: #ffffff;
+  background-color: #007bff;
+  color: #fff;
   border: none;
-  padding: 8px 16px;
+  padding: 8px 12px;
+  border-radius: 4px;
   font-size: 14px;
-  border-radius: 5px;
   cursor: pointer;
-  outline: none; /* Uklanja stil primećivanja */
+  margin-right: 10px;
 }
 
-.post {
-  margin-bottom: 20px;
-  padding: 10px;
-  background-color: #ffffff;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
-
-.post-header p {
-  font-size: 12px;
-  margin: 0;
-  color: #999999;
-}
-
+/* Stil za sadržaj posta */
 .post-content {
   margin-bottom: 10px;
 }
 
-.post-content textarea {
-  width: 100%;
-  min-height: 60px;
-  padding: 8px;
-  font-size: 14px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  resize: vertical;
-}
-
-#content {
+/* Stil za naslov sadržaja posta */
+.post-content h3 {
+  font-size: 20px;
   margin: 0;
 }
 
-#editText {
+/* Stil za textarea za izmenu sadržaja posta */
+.edit-textarea {
   width: 100%;
-  min-height: 60px;
+  height: 100px;
   padding: 8px;
   font-size: 14px;
   border: 1px solid #ccc;
-  border-radius: 5px;
-  resize: vertical;
+  border-radius: 4px;
+  margin-bottom: 10px;
 }
 
+/* Stil za sekciju komentara */
+.comments-section {
+  margin-top: 20px;
+}
 
+/* Stil za input polje za unos komentara */
+.comment-input {
+  width: 100%;
+  padding: 8px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-bottom: 10px;
+}
+
+/* Stil za dugme za dodavanje komentara */
+.add-comment-button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+/* Stil za kontejner komentara */
+.comment {
+  background-color: #f9f9f9;
+  padding: 10px;
+  margin: 10px;
+  border: solid 1px lightblue;
+}
+
+/* Stil za korisničko ime autora komentara */
+.comment p {
+  font-size: 14px;
+  margin: 0;
+  font-weight: bold;
+  margin: 10px;
+}
+
+/* Stil za dugmad akcija posta */
+.edit-button,
+.delete-button,
+.cancel-button,
+.confirm-button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+/* Stil za hr element */
+hr {
+  border: none;
+  border-top: 1px solid #ccc;
+  margin: 20px 0;
+}
 

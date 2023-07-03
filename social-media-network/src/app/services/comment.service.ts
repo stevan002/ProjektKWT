@@ -1,24 +1,37 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment.development';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { AuthenticationService } from './authentication.service';
+import { Comment } from '../models/post.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CommentService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private authService: AuthenticationService) { }
 
-  public save(comment: Comment){
-    return this.http.post(`${environment.api}/comments`, comment);
+  public save(postId:number, comment: Comment): Observable<Comment>{
+    const headers = this.authService.getAuthenticatedHeaders();
+    return this.http.post<Comment>(`${environment.api}/comments/${postId}`, comment, {headers, responseType: 'json'});
   }
 
-  public getOne(id: number):Observable<Comment>{
-    return this.http.get<Comment>(`${environment.api}/comments/${id}`);
+  public update(commentId: number, newText: string): Observable<Comment>{
+    const body = {
+      text: newText
+    };
+    const headers = this.authService.getAuthenticatedHeaders();
+    return this.http.put<Comment>(`${environment.api}/comments/${commentId}`, body, {headers, responseType: 'json'});
   }
 
-  delete(id: number): Observable<boolean>{
-    return this.http.delete<boolean>(`${environment.api}/comments/${id}`);
+  public getCommentsFromPost(postId: number): Observable<Comment[]> {
+    const headers = this.authService.getAuthenticatedHeaders();
+    return this.http.get<Comment[]>(`${environment.api}/comments/${postId}`, {headers, responseType: 'json'});
+  }
+
+  delete(commentId: number): Observable<boolean>{
+    const headers = this.authService.getAuthenticatedHeaders();
+    return this.http.delete<boolean>(`${environment.api}/comments/${commentId}`, {headers, responseType: 'json'});
   }
 }

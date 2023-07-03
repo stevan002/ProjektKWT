@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Comment } from 'src/app/models/comment.model';
 import { Group } from 'src/app/models/group.model';
 import { Post } from 'src/app/models/post.model';
 import { AuthenticationService } from 'src/app/services/authentication.service';
+import { CommentService } from 'src/app/services/comment.service';
 import { GroupService } from 'src/app/services/group.service';
 import { PostService } from 'src/app/services/post.service';
 
@@ -21,7 +23,8 @@ export class PostComponent implements OnInit{
   constructor(
     private postService: PostService,
     private authService: AuthenticationService,
-    private groupService: GroupService){}
+    private groupService: GroupService,
+    private commentService: CommentService){}
 
   ngOnInit(): void {
     this.currentUser = this.authService.getCurrentUser();
@@ -55,7 +58,6 @@ export class PostComponent implements OnInit{
       comments: [],
       isEditing: false,
       isUpdating: false,
-      showComments: false,
       updatedContent: ''
     };
 
@@ -75,18 +77,10 @@ export class PostComponent implements OnInit{
     this.postService.getAll().subscribe(
       posts => {
         this.posts = posts;
-        
-        //ocitavanje komentara
-
-        this.posts.sort((a, b) => {
-          if(a.createdAt && b.createdAt){
-            return new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime();
-          }else{
-            return 0;
-          }
-        });
-        this.posts.reverse();
-//        console.log(this.posts);
+        for (const post of this.posts) {
+          this.loadComments(post);
+        }
+        posts.reverse();
       },
       error => {
         console.log(error);
@@ -147,10 +141,70 @@ export class PostComponent implements OnInit{
     )
   }
 
-  getGroupName(groupId: number): string {
-    const group = this.groups.find(g => g.id === groupId);
-    return group ? group.name : '';
+  commentInput: string = '';
+
+  loadComments(post: Post){
+    if(post){
+      this.commentService.getCommentsFromPost(post.id).subscribe(
+        comments => {
+          post.comments = comments
+        },
+        error => {
+          console.error("Greska: ", error);
+        }
+      );
+    }
   }
-  
-  
+
+  addComment(postId: number, commentContent: string){
+    const post = this.posts.find(p => p.id === postId);
+    if(post){
+      const newComment: Comment = {
+        text: commentContent,
+        updatedText: '',
+        isUpdating: false
+      };
+      this.commentService.save(post.id, newComment).subscribe(
+        createdComment => {
+          post.comments.push(createdComment);
+          this.commentInput = '';
+        },
+        error => {
+          console.error("Greska: ", error);
+        }
+      );
+    }
+  }
+
+  editComment(comment: Comment){
+    comment.isEditing = true;
+    comment.updatedText = comment.text;
+  }
+
+  updateComment(post: Post, commentId: number, comment: Comment){
+    if(!comment.updatedText.trim()){
+      return
+    }
+
+    comment.text = comment.updatedText;
+    comment.isEditing = false;
+    comment.isUpdating = true;
+    
+    this.commentService.update(commentId, comment.text).subscribe(
+      updatedComment => {
+        comment.isUpdating = false;
+        this.loadComments(post);
+      },
+      error => {
+        console.error("Greska: ", error);
+        comment.text = comment.updatedText;
+        comment.isEditing = true;
+        comment.isUpdating = false;
+      }
+    );
+  }
+
+  cancelEditComment(comment: Comment){
+    comment.isEditing = false;
+  }
 }

@@ -18,8 +18,10 @@
       <h2>Group name: {{ group.name }}</h2>
       <h6>Description: {{ group.description }}</h6>
       <p>Created By: {{ group.createdBy?.displayName ? group.createdBy?.displayName : group.createdBy?.username }}</p>
-      <button class="delete-button" (click)="deleteGroup(group.id!)">Delete</button>
-      <button class="update-button" (click)="showEditForm(group)">Update</button>
+      <div *ngIf="group.createdBy?.username === currentUser?.sub">
+        <button class="delete-button" (click)="deleteGroup(group.id!)">Delete</button>
+        <button class="update-button" (click)="showEditForm(group)">Update</button>
+      </div>
     </div>
   </div>
   

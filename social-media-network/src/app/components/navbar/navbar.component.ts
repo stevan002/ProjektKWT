@@ -29,6 +29,7 @@ export class NavbarComponent implements OnInit{
       }
     });
     this.userService.getUsername() ? this.username = this.userService.getUsername() : ""
+    
   }
 
   updateNavbar() {

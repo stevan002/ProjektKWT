@@ -34,7 +34,7 @@ import { GroupComponent } from './pages/group/group.component';
     PostComponent,
     EditProfileComponent,
     ChangePasswordComponent,
-    GroupComponent
+    GroupComponent,
   ],
   imports: [
     BrowserModule,
