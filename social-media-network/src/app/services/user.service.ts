@@ -32,4 +32,14 @@ export class UserService {
     return this.http.put<void>(`${environment.api}/users`, user, { headers, responseType: 'json' });
   }
 
+  public changePassword(currentPassword: string, newPassword: string, newPassword1: string): Observable<void>{
+    const headers = this.authService.getAuthenticatedHeaders();
+    const body = {
+      currentPassword,
+      newPassword,
+      newPassword1
+    }
+    return this.http.put<void>(`${environment.api}/users/change-password`, body, { headers });
+  }
+
 }

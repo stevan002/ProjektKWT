@@ -86,9 +86,11 @@ export class PostComponent implements OnInit{
         console.error("Niste kreirali post, ne mozete da ga obrisete.");
         return
     }
-    this.postService.delete(postId).subscribe(() => {
-      this.loadPosts();
-    });
+    if (confirm("Are you sure you want to delete this group?")) {
+      this.postService.delete(postId).subscribe(() => {
+        this.loadPosts();
+      });
+    }
 
     this.loadPosts();
   }

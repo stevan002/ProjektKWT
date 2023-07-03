@@ -5,6 +5,9 @@
         <div class="d-grid justify-content-center gap-2 mb-2">
           <button class="btn btn-sm btn-primary mt-2" (click)="onEditProfile()">Update profile</button>
         </div>
+        <div class="d-grid justify-content-center gap-2 mb-2">
+          <button class="btn btn-sm btn-primary mt-2" (click)="onEditPassword()">Change password</button>
+        </div>
       </div>
       <div class="col-lg-5 col-md-12">
         <ul class="list-group">
@@ -22,3 +25,4 @@
   </div>
 </div>
 <app-edit-profile *ngIf="editProfileEnabled" (updateUserEvent)="onUpdateProfile(user)"></app-edit-profile>
+<app-change-password *ngIf="editPasswordEnabled" (updateUserEvent)="onUpdateProfile(user)"></app-change-password>

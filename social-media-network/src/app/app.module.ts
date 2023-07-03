@@ -20,6 +20,7 @@ import { PostComponent } from './pages/post/post.component';
 import { JwtUtilsServiceService } from './services/jwt-utils-service.service';
 import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
 import { ChangePasswordComponent } from './components/change-password/change-password.component';
+import { GroupComponent } from './pages/group/group.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { ChangePasswordComponent } from './components/change-password/change-pas
     ProfileComponent,
     PostComponent,
     EditProfileComponent,
-    ChangePasswordComponent
+    ChangePasswordComponent,
+    GroupComponent
   ],
   imports: [
     BrowserModule,

@@ -1,11 +1,13 @@
 import { Post } from "./post.model";
+import { User } from "./user.model";
 
 export interface Group {
-    id: number;
+    id?: number;
     name: string;
     description: string;
-    creationDate: Date;
-    isSuspended: boolean;
-    suspendedReason: string;
-    posts: Post[];
+    createdAt?: Date;
+    createdBy?: User;
+    isSuspended?: boolean;
+    suspendedReason?: string;
+    posts?: Post[];
 }

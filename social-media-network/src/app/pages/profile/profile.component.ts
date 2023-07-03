@@ -12,6 +12,7 @@ export class ProfileComponent implements OnInit{
 
   user: User = new User();
   editProfileEnabled: boolean = false;
+  editPasswordEnabled: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -32,9 +33,16 @@ export class ProfileComponent implements OnInit{
     this.editProfileEnabled = !this.editProfileEnabled;
   }
 
+  onEditPassword(){
+    this.editPasswordEnabled = !this.editPasswordEnabled;
+  }
+
   onUpdateProfile(user: User){
     this.user = user;
     this.editProfileEnabled = false;
+    this.editPasswordEnabled = false;
   }
+
+  
 
 }

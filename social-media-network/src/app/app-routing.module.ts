@@ -7,12 +7,14 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { canActivateAuthGuard } from './services/can-activate-auth.guard';
 import { PostComponent } from './pages/post/post.component';
+import { GroupComponent } from './pages/group/group.component';
 
 const routes: Routes = [
   {path: 'home', component: HomeComponent},
   {path: 'auth/register', component: RegisterComponent, canActivate:[canActivateAuthGuard]},
   {path: 'auth/login', component: LoginComponent, canActivate:[canActivateAuthGuard]},
   {path: 'users/:username', component: ProfileComponent},
+  {path: 'group', component: GroupComponent},
   {path: '', redirectTo: 'home', pathMatch: 'full'},
   {path: "**",  component: NotFoundComponent}
 ];

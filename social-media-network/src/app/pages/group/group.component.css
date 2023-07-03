@@ -1,0 +1,87 @@
+.group-card {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  background-color: #f8f9fa;
+  border-radius: 5px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.group-form {
+  flex: 0 0 40%;
+}
+
+.group-content {
+  margin-bottom: 10px;
+}
+
+.group-input,
+.group-textarea {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  background-color: #fff;
+  color: #495057;
+}
+
+.group-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.group-button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.group-list {
+  flex: 0 0 50%;
+}
+
+.group {
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  border: 1px solid #ced4da;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.group-header {
+  margin-bottom: 10px;
+}
+
+.group-title {
+  font-size: 18px;
+  font-weight: bold;
+  color: #007bff;
+  margin-bottom: 5px;
+}
+
+.group-description {
+  color: #6c757d;
+  margin-bottom: 10px;
+}
+
+.delete-button {
+  background-color: #dc3545;
+  color: #fff;
+  border: none;
+  padding: 4px 8px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* Optional: Add hover effect to buttons */
+.group-button:hover,
+.delete-button:hover {
+  opacity: 0.8;
+}
