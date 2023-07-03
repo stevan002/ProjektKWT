@@ -30,8 +30,8 @@ export class CommentService {
     return this.http.get<Comment[]>(`${environment.api}/comments/${postId}`, {headers, responseType: 'json'});
   }
 
-  delete(commentId: number): Observable<boolean>{
+  delete(commentId: number): Observable<void>{
     const headers = this.authService.getAuthenticatedHeaders();
-    return this.http.delete<boolean>(`${environment.api}/comments/${commentId}`, {headers, responseType: 'json'});
+    return this.http.delete<void>(`${environment.api}/comments/${commentId}`, {headers, responseType: 'json'});
   }
 }

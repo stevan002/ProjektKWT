@@ -96,7 +96,7 @@ export class PostComponent implements OnInit{
         console.error("Niste kreirali post, ne mozete da ga obrisete.");
         return
     }
-    if (confirm("Are you sure you want to delete this group?")) {
+    if (confirm("Are you sure you want to delete this post?")) {
       this.postService.delete(postId).subscribe(() => {
         this.loadPosts();
       });
@@ -189,7 +189,7 @@ export class PostComponent implements OnInit{
     comment.text = comment.updatedText;
     comment.isEditing = false;
     comment.isUpdating = true;
-    
+
     this.commentService.update(commentId, comment.text).subscribe(
       updatedComment => {
         comment.isUpdating = false;
@@ -206,5 +206,15 @@ export class PostComponent implements OnInit{
 
   cancelEditComment(comment: Comment){
     comment.isEditing = false;
+  }
+
+  deleteComment(post: Post, commentId: number){
+    const comment = post.comments.find(c => c.id === commentId);
+
+    if(confirm("Da li zelis da obrises komentar")){
+      this.commentService.delete(commentId).subscribe(() =>{
+        this.loadComments(post);
+      });
+    }
   }
 }

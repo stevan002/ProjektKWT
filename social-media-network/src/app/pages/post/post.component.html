@@ -40,10 +40,11 @@
     <span>{{comment.createdAt}}</span>
     <ng-container *ngIf="comment.isEditing">
       <textarea id="editComment" [(ngModel)]="comment.updatedText"></textarea>
-      <button class="buttonComment" (click)="updateComment(post, comment.id, comment)">Sačuvaj</button>
-      <button class="buttonComment" (click)="cancelEditComment(comment)">Otkaži</button>
+      <button class="buttonComment" (click)="updateComment(post, comment.id, comment)">Save</button>
+      <button class="buttonComment" (click)="cancelEditComment(comment)">Cancel</button>
     </ng-container>
-    <button class="buttonComment" *ngIf="!comment.isEditing && comment.writtenBy?.username === currentUser?.sub" (click)="editComment(comment)">Izmeni</button>
+    <button class="buttonComment" *ngIf="!comment.isEditing && comment.writtenBy?.username === currentUser?.sub" (click)="editComment(comment)">Edit</button>
+    <button class="buttonComment" *ngIf="!comment.isEditing && comment.writtenBy?.username === currentUser?.sub" (click)="deleteComment(post, comment.id)">Delete</button>
     <hr>
   </div>
   <form (submit)="addComment(post.id, commentInput)">
