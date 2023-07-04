@@ -11,6 +11,7 @@ export interface Post {
     updatedContent: string;
     isUpdating: boolean;
     comments: Comment[];
+    showComments: boolean;
 }
 
 

@@ -41,6 +41,20 @@ export class PostComponent implements OnInit{
 
   }
 
+  showComments: boolean = false;
+
+  toggleComments(post: Post) {
+    post.showComments = !post.showComments;
+    if (post.showComments) {
+      this.loadComments(post);
+    }
+  }
+
+  getGroupName(groupId: number): string {
+    const group = this.groups.find(g => g.id === groupId);
+    return group ? group.name : '';
+  }
+
   createPost(){
     if(!this.newPostContent.trim()){
       return
@@ -58,7 +72,8 @@ export class PostComponent implements OnInit{
       comments: [],
       isEditing: false,
       isUpdating: false,
-      updatedContent: ''
+      updatedContent: '',
+      showComments: false
     };
 
     this.postService.save(newPost).subscribe(

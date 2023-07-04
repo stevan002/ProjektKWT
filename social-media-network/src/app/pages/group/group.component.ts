@@ -14,12 +14,14 @@ export class GroupComponent implements OnInit{
   newGroupDescription!: string;
   groups: Group[] = [];
   currentUser: any;
+  loggedIn!:boolean;
 
   constructor(private http: HttpClient, private groupService: GroupService, private authService: AuthenticationService){}
 
   ngOnInit(): void {
     this.currentUser = this.authService.getCurrentUser();
     this.loadGroups();
+    this.loggedIn = this.authService.isLoggedIn();
   }
 
   createGroup(): void{

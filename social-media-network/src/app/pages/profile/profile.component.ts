@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { User } from 'src/app/models/user.model';
+import { AuthenticationService } from 'src/app/services/authentication.service';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -13,10 +14,12 @@ export class ProfileComponent implements OnInit{
   user: User = new User();
   editProfileEnabled: boolean = false;
   editPasswordEnabled: boolean = false;
+  loggedIn!: boolean;
 
   constructor(
     private route: ActivatedRoute,
-    private userService: UserService
+    private userService: UserService,
+    private authService: AuthenticationService
   ){}
 
 
@@ -27,6 +30,7 @@ export class ProfileComponent implements OnInit{
         this.user = user;
       })
     })
+    this.loggedIn = this.authService.isLoggedIn();
   }
 
   onEditProfile(){

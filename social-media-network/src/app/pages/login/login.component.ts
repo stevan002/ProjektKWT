@@ -50,7 +50,7 @@ export class LoginComponent implements OnInit{
 				this.toastr.success('Successful login!');
 				localStorage.setItem('user', JSON.stringify(result));
 				this.authService.isLoggedIn();
-				this.router.navigate(['home']);
+				this.router.navigateByUrl("/");
 			},
 			error => {
 				this.toastr.error(error.error);

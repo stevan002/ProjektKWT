@@ -10,7 +10,7 @@ import { PostComponent } from './pages/post/post.component';
 import { GroupComponent } from './pages/group/group.component';
 
 const routes: Routes = [
-  {path: 'home', component: HomeComponent},
+  {path: 'home', component: HomeComponent,},
   {path: 'auth/register', component: RegisterComponent, canActivate:[canActivateAuthGuard]},
   {path: 'auth/login', component: LoginComponent, canActivate:[canActivateAuthGuard]},
   {path: 'users/:username', component: ProfileComponent},
