@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthenticationService } from 'src/app/services/authentication.service';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -11,11 +12,13 @@ import { UserService } from 'src/app/services/user.service';
 export class ChangePasswordComponent implements OnInit{
   changePasswordForm!: FormGroup;
   errorMessage!: string;
+  
 
   constructor(
     private formBuilder: FormBuilder,
     private userService: UserService,
-    private router: Router
+    private router: Router,
+    private authService: AuthenticationService
   ) { }
 
   ngOnInit() {
@@ -30,7 +33,7 @@ export class ChangePasswordComponent implements OnInit{
     const currentPassword = this.changePasswordForm.value.currentPassword;
     const newPassword = this.changePasswordForm.value.newPassword;
     const newPassword1 = this.changePasswordForm.value.newPassword1;
-
+    
     // Provjera da li se nove lozinke podudaraju
     if (newPassword !== newPassword1) {
       this.errorMessage = "New passwords do not match.";
@@ -40,7 +43,6 @@ export class ChangePasswordComponent implements OnInit{
     // Poziv metode za promjenu lozinke u UserService
     this.userService.changePassword(currentPassword, newPassword, newPassword1).subscribe(
       () => {
-        // Ovdje možete dodati dodatnu logiku nakon uspješne promjene lozinke
         localStorage.clear();
         this.router.navigateByUrl("/auth/login")
       },

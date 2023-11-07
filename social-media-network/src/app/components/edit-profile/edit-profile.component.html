@@ -8,6 +8,8 @@
         <input id="descriptionField" class="form-control" style="max-width:200px" type="text"
                formControlName="description" required/>
   
+
+        <p style="color: blue;" *ngIf="editProfileForm.get('displayName')!.value === '' || editProfileForm.get('description')!.value === '' ">Display name and description must not be empty</p>
         <input class="btn btn-primary mt-2" type="submit" value="Submit"/>
       </form>
     </div>
